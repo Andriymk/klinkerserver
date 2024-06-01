@@ -1,1 +1,52 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #auth {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="auth">
+        <h1>Authorization</h1>
+        <p id="message">Authenticating...</p>
+        <p id="error" class="error" style="display: none;">Authentication failed. Please try again.</p>
+    </div>
+
+    <script>
+        // Отримання даних з URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const user_id = urlParams.get('user_id');
+        const username = urlParams.get('username');
+        const auth_failed = urlParams.get('auth_failed');
+
+        if (auth_failed) {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        } else {
+            window.location.href = `index.html?user_id=${user_id}&username=${username}`;
+        }
+    </script>
+</body>
+</html>
